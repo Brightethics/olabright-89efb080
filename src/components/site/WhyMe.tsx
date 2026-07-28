@@ -7,20 +7,14 @@ const icons = [Target, Store, Sparkles, BarChart3];
 
 export function WhyMe() {
   return (
-    <section
-      aria-labelledby="why-me-heading"
-      className="relative border-t border-border/60 py-20 sm:py-28"
-    >
+    <section aria-label="Why work with Ola Bright" className="relative border-t border-border/60 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Why Work With Me"
           title="A partner who's judged on"
           highlight="revenue"
-          className="[&_h2]:scroll-mt-32"
         />
-        <span id="why-me-heading" className="sr-only">
-          Why work with Ola Bright
-        </span>
+
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {WHY_ME.map((card, i) => {
