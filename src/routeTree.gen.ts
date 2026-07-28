@@ -10,11 +10,46 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VideoPortfolioIndexRouteImport } from './routes/video-portfolio/index'
+import { Route as ShopifyPortfolioIndexRouteImport } from './routes/shopify-portfolio/index'
+import { Route as VideoPortfolioSlugRouteImport } from './routes/video-portfolio/$slug'
+import { Route as ShopifyPortfolioSlugRouteImport } from './routes/shopify-portfolio/$slug'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -22,31 +57,140 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideoPortfolioIndexRoute = VideoPortfolioIndexRouteImport.update({
+  id: '/video-portfolio/',
+  path: '/video-portfolio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopifyPortfolioIndexRoute = ShopifyPortfolioIndexRouteImport.update({
+  id: '/shopify-portfolio/',
+  path: '/shopify-portfolio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideoPortfolioSlugRoute = VideoPortfolioSlugRouteImport.update({
+  id: '/video-portfolio/$slug',
+  path: '/video-portfolio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopifyPortfolioSlugRoute = ShopifyPortfolioSlugRouteImport.update({
+  id: '/shopify-portfolio/$slug',
+  path: '/shopify-portfolio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
+  id: '/api/public/media/$',
+  path: '/api/public/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
+  '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
+  '/video-portfolio/': typeof VideoPortfolioIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
+  '/shopify-portfolio': typeof ShopifyPortfolioIndexRoute
+  '/video-portfolio': typeof VideoPortfolioIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
+  '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
+  '/video-portfolio/': typeof VideoPortfolioIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/services'
+    | '/sitemap.xml'
+    | '/admin'
+    | '/shopify-portfolio/$slug'
+    | '/video-portfolio/$slug'
+    | '/shopify-portfolio/'
+    | '/video-portfolio/'
+    | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml'
-  id: '__root__' | '/' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/services'
+    | '/sitemap.xml'
+    | '/admin'
+    | '/shopify-portfolio/$slug'
+    | '/video-portfolio/$slug'
+    | '/shopify-portfolio'
+    | '/video-portfolio'
+    | '/api/public/media/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/services'
+    | '/sitemap.xml'
+    | '/_authenticated/admin'
+    | '/shopify-portfolio/$slug'
+    | '/video-portfolio/$slug'
+    | '/shopify-portfolio/'
+    | '/video-portfolio/'
+    | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  ContactRoute: typeof ContactRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ShopifyPortfolioSlugRoute: typeof ShopifyPortfolioSlugRoute
+  VideoPortfolioSlugRoute: typeof VideoPortfolioSlugRoute
+  ShopifyPortfolioIndexRoute: typeof ShopifyPortfolioIndexRoute
+  VideoPortfolioIndexRoute: typeof VideoPortfolioIndexRoute
+  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +202,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -65,12 +244,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/video-portfolio/': {
+      id: '/video-portfolio/'
+      path: '/video-portfolio'
+      fullPath: '/video-portfolio/'
+      preLoaderRoute: typeof VideoPortfolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopify-portfolio/': {
+      id: '/shopify-portfolio/'
+      path: '/shopify-portfolio'
+      fullPath: '/shopify-portfolio/'
+      preLoaderRoute: typeof ShopifyPortfolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/video-portfolio/$slug': {
+      id: '/video-portfolio/$slug'
+      path: '/video-portfolio/$slug'
+      fullPath: '/video-portfolio/$slug'
+      preLoaderRoute: typeof VideoPortfolioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopify-portfolio/$slug': {
+      id: '/shopify-portfolio/$slug'
+      path: '/shopify-portfolio/$slug'
+      fullPath: '/shopify-portfolio/$slug'
+      preLoaderRoute: typeof ShopifyPortfolioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/public/media/$': {
+      id: '/api/public/media/$'
+      path: '/api/public/media/$'
+      fullPath: '/api/public/media/$'
+      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  ContactRoute: ContactRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ShopifyPortfolioSlugRoute: ShopifyPortfolioSlugRoute,
+  VideoPortfolioSlugRoute: VideoPortfolioSlugRoute,
+  ShopifyPortfolioIndexRoute: ShopifyPortfolioIndexRoute,
+  VideoPortfolioIndexRoute: VideoPortfolioIndexRoute,
+  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

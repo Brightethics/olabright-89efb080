@@ -1,26 +1,39 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Toaster } from "@/components/ui/sonner";
-import { Navbar } from "@/components/site/Navbar";
-import { Hero } from "@/components/site/Hero";
-import { About } from "@/components/site/About";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { Hero, Authority } from "@/components/site/Hero";
+import { FeaturedShopify, FeaturedVideos } from "@/components/site/FeaturedWork";
 import { Services } from "@/components/site/Services";
-import { Stats } from "@/components/site/Stats";
-import { Portfolio } from "@/components/site/Portfolio";
-import { CaseStudies } from "@/components/site/CaseStudies";
+import { Testimonials } from "@/components/site/Testimonials";
 import { WhyMe } from "@/components/site/WhyMe";
 import { Process } from "@/components/site/Process";
-import { Testimonials } from "@/components/site/Testimonials";
 import { FAQ } from "@/components/site/FAQ";
-import { Contact } from "@/components/site/Contact";
-import { Footer } from "@/components/site/Footer";
-import { FloatingActions } from "@/components/site/FloatingActions";
-import { FAQS } from "@/lib/site-data";
+import { Button } from "@/components/ui/button";
+import { CONTACT, FAQS } from "@/lib/site-data";
+import {
+  DEFAULT_CTA,
+  pickContent,
+  siteContentQuery,
+  shopifyProjectsQuery,
+  testimonialsQuery,
+  videoProjectsQuery,
+  type CtaContent,
+} from "@/lib/cms";
 
 const TITLE = "Ola Bright Digital — Shopify CRO & AI Video Creator";
 const DESCRIPTION =
-  "Shopify Conversion Optimization Specialist & AI Video Creator helping ecommerce brands increase sales, improve customer experience, and scale profitably.";
+  "Shopify Conversion Optimization Specialist and AI Video Creator helping eCommerce brands increase sales, improve customer experience and scale profitably.";
 
 export const Route = createFileRoute("/")({
+  loader: async ({ context }) => {
+    await Promise.all([
+      context.queryClient.ensureQueryData(siteContentQuery),
+      context.queryClient.ensureQueryData(shopifyProjectsQuery()),
+      context.queryClient.ensureQueryData(videoProjectsQuery()),
+      context.queryClient.ensureQueryData(testimonialsQuery),
+    ]);
+  },
   head: () => ({
     meta: [
       { title: TITLE },
@@ -29,7 +42,6 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
@@ -40,7 +52,7 @@ export const Route = createFileRoute("/")({
           "@type": "ProfessionalService",
           name: "Ola Bright Digital",
           description: DESCRIPTION,
-          email: "mrbrightugc@gmail.com",
+          email: CONTACT.email,
           telephone: "+2347042220359",
           areaServed: "Worldwide",
           knowsAbout: [
@@ -67,34 +79,60 @@ export const Route = createFileRoute("/")({
     ],
   }),
   component: Index,
+  errorComponent: ({ error }) => (
+    <div className="grid min-h-dvh place-items-center p-6 text-center" role="alert">
+      {error.message}
+    </div>
+  ),
+  notFoundComponent: () => <div className="p-10 text-center">Page not found.</div>,
 });
+
+function FinalCta() {
+  const { data } = useSuspenseQuery(siteContentQuery);
+  const cta = pickContent<CtaContent>(data, "cta", DEFAULT_CTA);
+
+  return (
+    <section className="relative border-t border-border/60 py-20 sm:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-0 size-[34rem] -translate-x-1/2 rounded-full bg-gold/8 blur-[160px]"
+      />
+      <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
+        <h2 className="text-balance text-3xl font-semibold sm:text-5xl">
+          {cta.title.replace(" Brand", " ")}
+          <span className="text-gold-gradient">Brand</span>
+        </h2>
+        <p className="mx-auto mt-5 max-w-xl text-pretty text-muted-foreground">{cta.subtitle}</p>
+        <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <Button asChild variant="gold" size="lg">
+            <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
+              <MessageCircle /> WhatsApp
+            </a>
+          </Button>
+          <Button asChild variant="goldOutline" size="lg">
+            <Link to="/contact">
+              Contact Me <ArrowRight />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 function Index() {
   return (
-    <div className="min-h-dvh">
-      <a
-        href="#home"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-gold-gradient focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
-      >
-        Skip to content
-      </a>
-      <Navbar />
-      <main>
-        <Hero />
-        <Stats />
-        <About />
-        <Services />
-        <Portfolio />
-        <CaseStudies />
-        <WhyMe />
-        <Process />
-        <Testimonials />
-        <FAQ />
-        <Contact />
-      </main>
-      <Footer />
-      <FloatingActions />
-      <Toaster />
-    </div>
+    <SiteLayout>
+      <Hero />
+      <Authority />
+      <FeaturedShopify />
+      <FeaturedVideos />
+      <Services />
+      <WhyMe />
+      <Process />
+      <Testimonials />
+      <FAQ />
+      <FinalCta />
+    </SiteLayout>
   );
 }
