@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as VideoPortfolioIndexRouteImport } from './routes/video-portfolio/index'
 import { Route as ShopifyPortfolioIndexRouteImport } from './routes/shopify-portfolio/index'
+import { Route as VideoPortfolioSlugRouteImport } from './routes/video-portfolio/$slug'
 import { Route as ShopifyPortfolioSlugRouteImport } from './routes/shopify-portfolio/$slug'
 import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
@@ -36,6 +37,11 @@ const ShopifyPortfolioIndexRoute = ShopifyPortfolioIndexRouteImport.update({
   path: '/shopify-portfolio/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideoPortfolioSlugRoute = VideoPortfolioSlugRouteImport.update({
+  id: '/video-portfolio/$slug',
+  path: '/video-portfolio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopifyPortfolioSlugRoute = ShopifyPortfolioSlugRouteImport.update({
   id: '/shopify-portfolio/$slug',
   path: '/shopify-portfolio/$slug',
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
   '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
   '/video-portfolio/': typeof VideoPortfolioIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
   '/shopify-portfolio': typeof ShopifyPortfolioIndexRoute
   '/video-portfolio': typeof VideoPortfolioIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
   '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
   '/video-portfolio/': typeof VideoPortfolioIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/shopify-portfolio/$slug'
+    | '/video-portfolio/$slug'
     | '/shopify-portfolio/'
     | '/video-portfolio/'
     | '/api/public/media/$'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/shopify-portfolio/$slug'
+    | '/video-portfolio/$slug'
     | '/shopify-portfolio'
     | '/video-portfolio'
     | '/api/public/media/$'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/sitemap.xml'
     | '/shopify-portfolio/$slug'
+    | '/video-portfolio/$slug'
     | '/shopify-portfolio/'
     | '/video-portfolio/'
     | '/api/public/media/$'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ShopifyPortfolioSlugRoute: typeof ShopifyPortfolioSlugRoute
+  VideoPortfolioSlugRoute: typeof VideoPortfolioSlugRoute
   ShopifyPortfolioIndexRoute: typeof ShopifyPortfolioIndexRoute
   VideoPortfolioIndexRoute: typeof VideoPortfolioIndexRoute
   ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopifyPortfolioIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/video-portfolio/$slug': {
+      id: '/video-portfolio/$slug'
+      path: '/video-portfolio/$slug'
+      fullPath: '/video-portfolio/$slug'
+      preLoaderRoute: typeof VideoPortfolioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shopify-portfolio/$slug': {
       id: '/shopify-portfolio/$slug'
       path: '/shopify-portfolio/$slug'
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ShopifyPortfolioSlugRoute: ShopifyPortfolioSlugRoute,
+  VideoPortfolioSlugRoute: VideoPortfolioSlugRoute,
   ShopifyPortfolioIndexRoute: ShopifyPortfolioIndexRoute,
   VideoPortfolioIndexRoute: VideoPortfolioIndexRoute,
   ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
