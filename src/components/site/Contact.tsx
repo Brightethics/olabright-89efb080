@@ -1,6 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { Mail, MessageCircle, Send, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 import { BUDGET_RANGES, CONTACT, PROJECT_TYPES } from "@/lib/site-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +15,7 @@ const methods = [
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    value: "+234 704 222 0359",
+    value: CONTACT.whatsappDisplay,
     href: CONTACT.whatsapp,
     note: "Fastest reply — usually within an hour",
   },
@@ -33,36 +35,55 @@ const methods = [
   },
 ];
 
+const schema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Enter a valid email").max(255),
+  company: z.string().trim().max(120).optional(),
+  website: z.string().trim().max(200).optional(),
+  project_type: z.string().trim().max(120).optional(),
+  budget: z.string().trim().max(60).optional(),
+  message: z.string().trim().min(10, "Tell me a bit more").max(2000),
+});
+
 const fieldClass =
   "border-border/70 bg-background/60 focus-visible:border-gold/50 focus-visible:ring-gold/30";
 
-export function Contact() {
+export function Contact({ title, subtitle }: { title?: string; subtitle?: string }) {
   const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+
+    const parsed = schema.safeParse({
+      name: data.get("name"),
+      email: data.get("email"),
+      company: data.get("company") || undefined,
+      website: data.get("website") || undefined,
+      project_type: data.get("projectType") || undefined,
+      budget: data.get("budget") || undefined,
+      message: data.get("message"),
+    });
+
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Please check the form");
+      return;
+    }
+
     setSubmitting(true);
+    const { error } = await supabase.from("contact_submissions").insert(parsed.data);
+    setSubmitting(false);
 
-    const message = [
-      `New project enquiry`,
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `Company: ${data.get("company") || "—"}`,
-      `Website: ${data.get("website") || "—"}`,
-      `Project type: ${data.get("projectType")}`,
-      `Budget: ${data.get("budget")}`,
-      ``,
-      `${data.get("message")}`,
-    ].join("\n");
+    if (error) {
+      toast.error("Could not send your enquiry", { description: "Please try WhatsApp instead." });
+      return;
+    }
 
-    window.open(`${CONTACT.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
-    toast.success("Enquiry ready to send", {
-      description: "WhatsApp opened with your details pre-filled. Hit send and I'll reply shortly.",
+    toast.success("Enquiry received", {
+      description: "Thanks — I'll get back to you shortly. Want a faster reply? Message me on WhatsApp.",
     });
     form.reset();
-    setSubmitting(false);
   };
 
   return (
@@ -74,9 +95,12 @@ export function Contact() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Contact"
-          title="Let's Grow Your"
-          highlight="Brand"
-          description="Tell me about your store and I'll come back with the three biggest conversion opportunities I can see — free, no obligation."
+          title={title ?? "Let's Grow Your"}
+          highlight={title ? undefined : "Brand"}
+          description={
+            subtitle ??
+            "Tell me about your store and I'll come back with the three biggest conversion opportunities I can see — free, no obligation."
+          }
         />
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
@@ -133,7 +157,12 @@ export function Contact() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="company">Company</Label>
-                  <Input id="company" name="company" autoComplete="organization" className={fieldClass} />
+                  <Input
+                    id="company"
+                    name="company"
+                    autoComplete="organization"
+                    className={fieldClass}
+                  />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="website">Website</Label>
@@ -202,10 +231,10 @@ export function Contact() {
                 disabled={submitting}
                 className="mt-7 w-full"
               >
-                Send Enquiry <Send />
+                {submitting ? "Sending…" : "Send Enquiry"} <Send />
               </Button>
               <p className="mt-3 text-center text-xs text-muted-foreground">
-                Your details open a pre-filled WhatsApp message — no account required.
+                Prefer instant? <a className="text-gold" href={CONTACT.whatsapp}>Message me on WhatsApp</a>.
               </p>
             </form>
           </Reveal>

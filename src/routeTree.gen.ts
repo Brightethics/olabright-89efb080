@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VideoPortfolioIndexRouteImport } from './routes/video-portfolio/index'
+import { Route as ShopifyPortfolioIndexRouteImport } from './routes/shopify-portfolio/index'
+import { Route as ShopifyPortfolioSlugRouteImport } from './routes/shopify-portfolio/$slug'
+import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -22,31 +26,86 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VideoPortfolioIndexRoute = VideoPortfolioIndexRouteImport.update({
+  id: '/video-portfolio/',
+  path: '/video-portfolio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopifyPortfolioIndexRoute = ShopifyPortfolioIndexRouteImport.update({
+  id: '/shopify-portfolio/',
+  path: '/shopify-portfolio/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShopifyPortfolioSlugRoute = ShopifyPortfolioSlugRouteImport.update({
+  id: '/shopify-portfolio/$slug',
+  path: '/shopify-portfolio/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
+  id: '/api/public/media/$',
+  path: '/api/public/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
+  '/video-portfolio/': typeof VideoPortfolioIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/shopify-portfolio': typeof ShopifyPortfolioIndexRoute
+  '/video-portfolio': typeof VideoPortfolioIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
+  '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
+  '/video-portfolio/': typeof VideoPortfolioIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/sitemap.xml'
+    | '/shopify-portfolio/$slug'
+    | '/shopify-portfolio/'
+    | '/video-portfolio/'
+    | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml'
-  id: '__root__' | '/' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/sitemap.xml'
+    | '/shopify-portfolio/$slug'
+    | '/shopify-portfolio'
+    | '/video-portfolio'
+    | '/api/public/media/$'
+  id:
+    | '__root__'
+    | '/'
+    | '/sitemap.xml'
+    | '/shopify-portfolio/$slug'
+    | '/shopify-portfolio/'
+    | '/video-portfolio/'
+    | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ShopifyPortfolioSlugRoute: typeof ShopifyPortfolioSlugRoute
+  ShopifyPortfolioIndexRoute: typeof ShopifyPortfolioIndexRoute
+  VideoPortfolioIndexRoute: typeof VideoPortfolioIndexRoute
+  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +124,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/video-portfolio/': {
+      id: '/video-portfolio/'
+      path: '/video-portfolio'
+      fullPath: '/video-portfolio/'
+      preLoaderRoute: typeof VideoPortfolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopify-portfolio/': {
+      id: '/shopify-portfolio/'
+      path: '/shopify-portfolio'
+      fullPath: '/shopify-portfolio/'
+      preLoaderRoute: typeof ShopifyPortfolioIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/shopify-portfolio/$slug': {
+      id: '/shopify-portfolio/$slug'
+      path: '/shopify-portfolio/$slug'
+      fullPath: '/shopify-portfolio/$slug'
+      preLoaderRoute: typeof ShopifyPortfolioSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/media/$': {
+      id: '/api/public/media/$'
+      path: '/api/public/media/$'
+      fullPath: '/api/public/media/$'
+      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ShopifyPortfolioSlugRoute: ShopifyPortfolioSlugRoute,
+  ShopifyPortfolioIndexRoute: ShopifyPortfolioIndexRoute,
+  VideoPortfolioIndexRoute: VideoPortfolioIndexRoute,
+  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
