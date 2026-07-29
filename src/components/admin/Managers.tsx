@@ -426,6 +426,14 @@ export function TestimonialManager() {
             />
           </div>
 
+          <label className="flex items-center gap-2 text-sm">
+            <Switch
+              checked={Boolean(draft.approved)}
+              onCheckedChange={(v) => set({ approved: v })}
+            />
+            Approved (visible on the site)
+          </label>
+
           <Toggles row={draft as Record<string, unknown>} set={set as never} showPublished={false} />
 
           <div className="flex gap-3">
