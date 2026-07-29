@@ -56,6 +56,7 @@ export type Database = {
           before_image: string | null
           challenge: string
           created_at: string
+          desktop_image: string | null
           featured: boolean
           gallery_images: string[]
           hero_image: string | null
@@ -63,9 +64,11 @@ export type Database = {
           industry: string
           meta_description: string | null
           meta_title: string | null
+          mobile_image: string | null
           name: string
           published: boolean
           results: string
+          screen_recording: string | null
           short_description: string
           slug: string
           solution: string
@@ -77,6 +80,7 @@ export type Database = {
           before_image?: string | null
           challenge?: string
           created_at?: string
+          desktop_image?: string | null
           featured?: boolean
           gallery_images?: string[]
           hero_image?: string | null
@@ -84,9 +88,11 @@ export type Database = {
           industry?: string
           meta_description?: string | null
           meta_title?: string | null
+          mobile_image?: string | null
           name: string
           published?: boolean
           results?: string
+          screen_recording?: string | null
           short_description?: string
           slug: string
           solution?: string
@@ -98,6 +104,7 @@ export type Database = {
           before_image?: string | null
           challenge?: string
           created_at?: string
+          desktop_image?: string | null
           featured?: boolean
           gallery_images?: string[]
           hero_image?: string | null
@@ -105,9 +112,11 @@ export type Database = {
           industry?: string
           meta_description?: string | null
           meta_title?: string | null
+          mobile_image?: string | null
           name?: string
           published?: boolean
           results?: string
+          screen_recording?: string | null
           short_description?: string
           slug?: string
           solution?: string
@@ -136,6 +145,7 @@ export type Database = {
       }
       testimonials: {
         Row: {
+          approved: boolean
           company: string
           created_at: string
           featured: boolean
@@ -149,6 +159,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          approved?: boolean
           company?: string
           created_at?: string
           featured?: boolean
@@ -162,6 +173,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          approved?: boolean
           company?: string
           created_at?: string
           featured?: boolean
