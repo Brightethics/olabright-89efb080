@@ -56,7 +56,10 @@ function ShopifyPortfolio() {
                     params={{ slug: project.slug }}
                     className="card-lift flex h-full flex-col overflow-hidden rounded-3xl border border-border/70 bg-surface/60"
                   >
-                    <CmsImage path={project.hero_image} alt={`${project.name} preview`} />
+                    <CmsImage
+                      path={project.desktop_image ?? project.hero_image}
+                      alt={`${project.name} preview`}
+                    />
                     <div className="flex flex-1 flex-col gap-2 p-6">
                       <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-gold">
                         {project.industry || "eCommerce"}
