@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { slugify } from "@/lib/cms";
-import { MediaField, MediaListField } from "@/components/admin/MediaField";
+import { MediaField } from "@/components/admin/MediaField";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
