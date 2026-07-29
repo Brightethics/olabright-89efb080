@@ -467,7 +467,19 @@ export function TestimonialManager() {
               <p className="font-medium">{item.name}</p>
               <p className="text-xs text-muted-foreground">
                 {[item.role, item.company].filter(Boolean).join(", ")} · {item.rating}★
+                {item.approved ? "" : " · pending review"}
               </p>
+            </div>
+            <div className="flex gap-2">
+              {item.approved ? null : (
+                <Button
+                  variant="gold"
+                  size="sm"
+                  onClick={() => save.mutate({ ...item, approved: true })}
+                >
+                  Approve
+                </Button>
+              )}
             </div>
             <div className="flex gap-2">
               <Button variant="goldOutline" size="sm" onClick={() => setDraft(item)}>
