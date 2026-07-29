@@ -480,8 +480,6 @@ export function TestimonialManager() {
                   Approve
                 </Button>
               )}
-            </div>
-            <div className="flex gap-2">
               <Button variant="goldOutline" size="sm" onClick={() => setDraft(item)}>
                 Edit
               </Button>
