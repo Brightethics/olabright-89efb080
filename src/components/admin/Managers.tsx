@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { slugify } from "@/lib/cms";
-import { MediaField, MediaListField } from "@/components/admin/MediaField";
+import { MediaField } from "@/components/admin/MediaField";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -121,15 +121,10 @@ function Toggles({
 const emptyShopify = (): Partial<Shopify> => ({
   name: "",
   slug: "",
-  industry: "",
   short_description: "",
-  challenge: "",
-  solution: "",
-  results: "",
-  hero_image: null,
-  gallery_images: [],
-  before_image: null,
-  after_image: null,
+  mobile_image: null,
+  desktop_image: null,
+  screen_recording: null,
   featured: false,
   published: true,
   sort_order: 0,
@@ -151,93 +146,44 @@ export function ShopifyManager() {
 
       {draft ? (
         <Card>
+          <Field label="Project name">
+            <Input
+              value={draft.name ?? ""}
+              onChange={(e) =>
+                set({ name: e.target.value, slug: draft.id ? draft.slug : slugify(e.target.value) })
+              }
+            />
+          </Field>
+
+          <Field label="Description">
+            <Textarea
+              rows={4}
+              value={draft.short_description ?? ""}
+              onChange={(e) => set({ short_description: e.target.value })}
+            />
+          </Field>
+
           <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Project name">
-              <Input
-                value={draft.name ?? ""}
-                onChange={(e) =>
-                  set({ name: e.target.value, slug: draft.id ? draft.slug : slugify(e.target.value) })
-                }
-              />
-            </Field>
-            <Field label="Slug (URL)">
-              <Input value={draft.slug ?? ""} onChange={(e) => set({ slug: e.target.value })} />
-            </Field>
-            <Field label="Industry">
-              <Input
-                value={draft.industry ?? ""}
-                onChange={(e) => set({ industry: e.target.value })}
-              />
-            </Field>
-            <Field label="Short description">
-              <Input
-                value={draft.short_description ?? ""}
-                onChange={(e) => set({ short_description: e.target.value })}
-              />
-            </Field>
+            <MediaField
+              label="Mobile display"
+              value={draft.mobile_image ?? null}
+              onChange={(p) => set({ mobile_image: p })}
+            />
+            <MediaField
+              label="Desktop view"
+              value={draft.desktop_image ?? null}
+              onChange={(p) => set({ desktop_image: p })}
+            />
           </div>
-
-          <Field label="Challenge">
-            <Textarea
-              rows={3}
-              value={draft.challenge ?? ""}
-              onChange={(e) => set({ challenge: e.target.value })}
-            />
-          </Field>
-          <Field label="Solution">
-            <Textarea
-              rows={3}
-              value={draft.solution ?? ""}
-              onChange={(e) => set({ solution: e.target.value })}
-            />
-          </Field>
-          <Field label="Results">
-            <Textarea
-              rows={3}
-              value={draft.results ?? ""}
-              onChange={(e) => set({ results: e.target.value })}
-            />
-          </Field>
-
           <MediaField
-            label="Hero image"
-            value={draft.hero_image ?? null}
-            onChange={(p) => set({ hero_image: p })}
+            label="Live screen recording"
+            accept="video/*"
+            value={draft.screen_recording ?? null}
+            onChange={(p) => set({ screen_recording: p })}
           />
-          <div className="grid gap-5 sm:grid-cols-2">
-            <MediaField
-              label="Before image"
-              value={draft.before_image ?? null}
-              onChange={(p) => set({ before_image: p })}
-            />
-            <MediaField
-              label="After image"
-              value={draft.after_image ?? null}
-              onChange={(p) => set({ after_image: p })}
-            />
-          </div>
-          <MediaListField
-            label="Gallery images"
-            values={draft.gallery_images ?? []}
-            onChange={(v) => set({ gallery_images: v })}
-          />
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Meta title">
-              <Input
-                value={draft.meta_title ?? ""}
-                onChange={(e) => set({ meta_title: e.target.value })}
-              />
-            </Field>
-            <Field label="Meta description">
-              <Input
-                value={draft.meta_description ?? ""}
-                onChange={(e) => set({ meta_description: e.target.value })}
-              />
-            </Field>
-          </div>
 
           <Toggles row={draft as Record<string, unknown>} set={set as never} />
+
 
           <div className="flex gap-3">
             <Button
@@ -334,9 +280,6 @@ export function VideoManager({ categories }: { categories: readonly string[] }) 
                 }
               />
             </Field>
-            <Field label="Slug (URL)">
-              <Input value={draft.slug ?? ""} onChange={(e) => set({ slug: e.target.value })} />
-            </Field>
             <Field label="Category">
               <select
                 value={draft.category ?? ""}
@@ -350,47 +293,15 @@ export function VideoManager({ categories }: { categories: readonly string[] }) 
                 ))}
               </select>
             </Field>
-            <Field label="Video URL (YouTube/Vimeo) — optional">
-              <Input
-                value={draft.video_url ?? ""}
-                onChange={(e) => set({ video_url: e.target.value })}
-                placeholder="https://youtu.be/…"
-              />
-            </Field>
           </div>
 
-          <Field label="Description">
-            <Textarea
-              rows={4}
-              value={draft.description ?? ""}
-              onChange={(e) => set({ description: e.target.value })}
-            />
-          </Field>
-          <Field label="Results">
-            <Textarea
-              rows={3}
-              value={draft.results ?? ""}
-              onChange={(e) => set({ results: e.target.value })}
-            />
-          </Field>
-
-          <MediaField
-            label="Thumbnail"
-            value={draft.thumbnail_url ?? null}
-            onChange={(p) => set({ thumbnail_url: p })}
-          />
           <MediaField
             label="Video file (upload)"
             accept="video/*"
             value={draft.video_url ?? null}
             onChange={(p) => set({ video_url: p })}
           />
-          <MediaListField
-            label="Additional media"
-            values={draft.additional_media ?? []}
-            accept="image/*,video/*"
-            onChange={(v) => set({ additional_media: v })}
-          />
+
 
           <Toggles row={draft as Record<string, unknown>} set={set as never} />
 
@@ -515,6 +426,14 @@ export function TestimonialManager() {
             />
           </div>
 
+          <label className="flex items-center gap-2 text-sm">
+            <Switch
+              checked={Boolean(draft.approved)}
+              onCheckedChange={(v) => set({ approved: v })}
+            />
+            Approved (visible on the site)
+          </label>
+
           <Toggles row={draft as Record<string, unknown>} set={set as never} showPublished={false} />
 
           <div className="flex gap-3">
@@ -548,9 +467,19 @@ export function TestimonialManager() {
               <p className="font-medium">{item.name}</p>
               <p className="text-xs text-muted-foreground">
                 {[item.role, item.company].filter(Boolean).join(", ")} · {item.rating}★
+                {item.approved ? "" : " · pending review"}
               </p>
             </div>
             <div className="flex gap-2">
+              {item.approved ? null : (
+                <Button
+                  variant="gold"
+                  size="sm"
+                  onClick={() => save.mutate({ ...item, approved: true })}
+                >
+                  Approve
+                </Button>
+              )}
               <Button variant="goldOutline" size="sm" onClick={() => setDraft(item)}>
                 Edit
               </Button>

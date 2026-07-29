@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { CmsImage } from "@/components/site/Media";
+import { CmsImage, CmsVideo } from "@/components/site/Media";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/site-data";
 import { shopifyProjectQuery } from "@/lib/cms";
@@ -105,8 +105,34 @@ function ProjectDetail() {
           ) : null}
 
           <div className="mt-10 overflow-hidden rounded-3xl border border-border/70">
-            <CmsImage path={data.hero_image} alt={`${data.name} hero`} ratio="aspect-16/9" />
+            <CmsImage
+              path={data.desktop_image ?? data.hero_image}
+              alt={`${data.name} desktop view`}
+              ratio="aspect-16/9"
+            />
           </div>
+
+          {data.mobile_image ? (
+            <section className="mt-14">
+              <h2 className="text-lg font-semibold">Mobile display</h2>
+              <div className="mt-5 max-w-xs overflow-hidden rounded-3xl border border-border/70">
+                <CmsImage
+                  path={data.mobile_image}
+                  alt={`${data.name} mobile display`}
+                  ratio="aspect-9/16"
+                />
+              </div>
+            </section>
+          ) : null}
+
+          {data.screen_recording ? (
+            <section className="mt-14">
+              <h2 className="text-lg font-semibold">Live screen recording</h2>
+              <div className="mt-5 overflow-hidden rounded-3xl border border-border/70">
+                <CmsVideo path={data.screen_recording} title={`${data.name} screen recording`} />
+              </div>
+            </section>
+          ) : null}
 
           <div className="mt-12 grid gap-7">
             <Block label="Challenge" body={data.challenge} />
@@ -119,6 +145,7 @@ function ProjectDetail() {
             paths={[data.before_image, data.after_image].filter((p): p is string => Boolean(p))}
           />
           <Gallery title="Gallery" paths={data.gallery_images} />
+
 
           <div className="mt-16 rounded-3xl border border-gold/20 bg-surface/60 p-8 text-center">
             <h2 className="text-2xl font-semibold">Want results like these?</h2>

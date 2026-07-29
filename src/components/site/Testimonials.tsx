@@ -4,15 +4,17 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { testimonialsQuery, mediaUrl } from "@/lib/cms";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+import { ReviewForm } from "./ReviewForm";
 
 export function Testimonials() {
   const { data: testimonials } = useSuspenseQuery(testimonialsQuery);
   const [index, setIndex] = useState(0);
 
-  if (!testimonials.length) return null;
+  const active = testimonials.length
+    ? testimonials[Math.min(index, testimonials.length - 1)]
+    : null;
+  const photo = mediaUrl(active?.photo_url);
 
-  const active = testimonials[Math.min(index, testimonials.length - 1)];
-  const photo = mediaUrl(active.photo_url);
 
   return (
     <section id="testimonials" className="relative border-t border-border/60 py-20 sm:py-28">
@@ -24,6 +26,7 @@ export function Testimonials() {
           description="Founders and growth leads on what changed after we worked together."
         />
 
+        {active ? (
         <Reveal className="mt-12">
           <figure className="relative rounded-3xl border border-border/70 bg-surface/60 p-7 sm:p-10">
             <Quote className="size-9 text-gold/40" />
@@ -102,6 +105,9 @@ export function Testimonials() {
             ) : null}
           </figure>
         </Reveal>
+        ) : null}
+
+        <ReviewForm />
       </div>
     </section>
   );
