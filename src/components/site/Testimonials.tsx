@@ -26,6 +26,7 @@ export function Testimonials() {
           description="Founders and growth leads on what changed after we worked together."
         />
 
+        {active ? (
         <Reveal className="mt-12">
           <figure className="relative rounded-3xl border border-border/70 bg-surface/60 p-7 sm:p-10">
             <Quote className="size-9 text-gold/40" />
