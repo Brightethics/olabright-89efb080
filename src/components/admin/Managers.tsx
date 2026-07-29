@@ -280,9 +280,6 @@ export function VideoManager({ categories }: { categories: readonly string[] }) 
                 }
               />
             </Field>
-            <Field label="Slug (URL)">
-              <Input value={draft.slug ?? ""} onChange={(e) => set({ slug: e.target.value })} />
-            </Field>
             <Field label="Category">
               <select
                 value={draft.category ?? ""}
@@ -296,47 +293,15 @@ export function VideoManager({ categories }: { categories: readonly string[] }) 
                 ))}
               </select>
             </Field>
-            <Field label="Video URL (YouTube/Vimeo) — optional">
-              <Input
-                value={draft.video_url ?? ""}
-                onChange={(e) => set({ video_url: e.target.value })}
-                placeholder="https://youtu.be/…"
-              />
-            </Field>
           </div>
 
-          <Field label="Description">
-            <Textarea
-              rows={4}
-              value={draft.description ?? ""}
-              onChange={(e) => set({ description: e.target.value })}
-            />
-          </Field>
-          <Field label="Results">
-            <Textarea
-              rows={3}
-              value={draft.results ?? ""}
-              onChange={(e) => set({ results: e.target.value })}
-            />
-          </Field>
-
-          <MediaField
-            label="Thumbnail"
-            value={draft.thumbnail_url ?? null}
-            onChange={(p) => set({ thumbnail_url: p })}
-          />
           <MediaField
             label="Video file (upload)"
             accept="video/*"
             value={draft.video_url ?? null}
             onChange={(p) => set({ video_url: p })}
           />
-          <MediaListField
-            label="Additional media"
-            values={draft.additional_media ?? []}
-            accept="image/*,video/*"
-            onChange={(v) => set({ additional_media: v })}
-          />
+
 
           <Toggles row={draft as Record<string, unknown>} set={set as never} />
 
