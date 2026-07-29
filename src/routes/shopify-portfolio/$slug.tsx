@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { CmsImage } from "@/components/site/Media";
+import { CmsImage, CmsVideo } from "@/components/site/Media";
 import { Button } from "@/components/ui/button";
 import { CONTACT } from "@/lib/site-data";
 import { shopifyProjectQuery } from "@/lib/cms";
