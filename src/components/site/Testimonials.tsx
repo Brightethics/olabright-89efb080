@@ -105,6 +105,9 @@ export function Testimonials() {
             ) : null}
           </figure>
         </Reveal>
+        ) : null}
+
+        <ReviewForm />
       </div>
     </section>
   );
