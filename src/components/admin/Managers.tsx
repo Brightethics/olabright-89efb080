@@ -121,15 +121,10 @@ function Toggles({
 const emptyShopify = (): Partial<Shopify> => ({
   name: "",
   slug: "",
-  industry: "",
   short_description: "",
-  challenge: "",
-  solution: "",
-  results: "",
-  hero_image: null,
-  gallery_images: [],
-  before_image: null,
-  after_image: null,
+  mobile_image: null,
+  desktop_image: null,
+  screen_recording: null,
   featured: false,
   published: true,
   sort_order: 0,
@@ -151,93 +146,44 @@ export function ShopifyManager() {
 
       {draft ? (
         <Card>
+          <Field label="Project name">
+            <Input
+              value={draft.name ?? ""}
+              onChange={(e) =>
+                set({ name: e.target.value, slug: draft.id ? draft.slug : slugify(e.target.value) })
+              }
+            />
+          </Field>
+
+          <Field label="Description">
+            <Textarea
+              rows={4}
+              value={draft.short_description ?? ""}
+              onChange={(e) => set({ short_description: e.target.value })}
+            />
+          </Field>
+
           <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Project name">
-              <Input
-                value={draft.name ?? ""}
-                onChange={(e) =>
-                  set({ name: e.target.value, slug: draft.id ? draft.slug : slugify(e.target.value) })
-                }
-              />
-            </Field>
-            <Field label="Slug (URL)">
-              <Input value={draft.slug ?? ""} onChange={(e) => set({ slug: e.target.value })} />
-            </Field>
-            <Field label="Industry">
-              <Input
-                value={draft.industry ?? ""}
-                onChange={(e) => set({ industry: e.target.value })}
-              />
-            </Field>
-            <Field label="Short description">
-              <Input
-                value={draft.short_description ?? ""}
-                onChange={(e) => set({ short_description: e.target.value })}
-              />
-            </Field>
+            <MediaField
+              label="Mobile display"
+              value={draft.mobile_image ?? null}
+              onChange={(p) => set({ mobile_image: p })}
+            />
+            <MediaField
+              label="Desktop view"
+              value={draft.desktop_image ?? null}
+              onChange={(p) => set({ desktop_image: p })}
+            />
           </div>
-
-          <Field label="Challenge">
-            <Textarea
-              rows={3}
-              value={draft.challenge ?? ""}
-              onChange={(e) => set({ challenge: e.target.value })}
-            />
-          </Field>
-          <Field label="Solution">
-            <Textarea
-              rows={3}
-              value={draft.solution ?? ""}
-              onChange={(e) => set({ solution: e.target.value })}
-            />
-          </Field>
-          <Field label="Results">
-            <Textarea
-              rows={3}
-              value={draft.results ?? ""}
-              onChange={(e) => set({ results: e.target.value })}
-            />
-          </Field>
-
           <MediaField
-            label="Hero image"
-            value={draft.hero_image ?? null}
-            onChange={(p) => set({ hero_image: p })}
+            label="Live screen recording"
+            accept="video/*"
+            value={draft.screen_recording ?? null}
+            onChange={(p) => set({ screen_recording: p })}
           />
-          <div className="grid gap-5 sm:grid-cols-2">
-            <MediaField
-              label="Before image"
-              value={draft.before_image ?? null}
-              onChange={(p) => set({ before_image: p })}
-            />
-            <MediaField
-              label="After image"
-              value={draft.after_image ?? null}
-              onChange={(p) => set({ after_image: p })}
-            />
-          </div>
-          <MediaListField
-            label="Gallery images"
-            values={draft.gallery_images ?? []}
-            onChange={(v) => set({ gallery_images: v })}
-          />
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Meta title">
-              <Input
-                value={draft.meta_title ?? ""}
-                onChange={(e) => set({ meta_title: e.target.value })}
-              />
-            </Field>
-            <Field label="Meta description">
-              <Input
-                value={draft.meta_description ?? ""}
-                onChange={(e) => set({ meta_description: e.target.value })}
-              />
-            </Field>
-          </div>
 
           <Toggles row={draft as Record<string, unknown>} set={set as never} />
+
 
           <div className="flex gap-3">
             <Button
