@@ -7,7 +7,8 @@ import { Reveal } from "./Reveal";
 import { ReviewForm } from "./ReviewForm";
 
 export function Testimonials() {
-  const { data: testimonials } = useSuspenseQuery(testimonialsQuery);
+  const { data: all } = useSuspenseQuery(testimonialsQuery);
+  const testimonials = all.filter((t) => t.approved);
   const [index, setIndex] = useState(0);
 
   const active = testimonials.length
@@ -23,7 +24,7 @@ export function Testimonials() {
           eyebrow="Testimonials"
           title="What clients"
           highlight="say"
-          description="Founders and growth leads on what changed after we worked together."
+          description="What clients say after working with me."
         />
 
         {active ? (

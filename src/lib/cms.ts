@@ -2,8 +2,8 @@ import { queryOptions } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { Tables } from "@/integrations/supabase/types";
 
-export type ShopifyProject = Tables<"shopify_projects">;
-export type VideoProject = Tables<"video_projects">;
+/** Portfolio projects are stored in the `shopify_projects` table (kept for data continuity). */
+export type PortfolioProject = Tables<"shopify_projects">;
 export type Testimonial = Tables<"testimonials">;
 
 export type HeroContent = {
@@ -31,9 +31,9 @@ export type CtaContent = { title: string; subtitle: string };
 export const DEFAULT_HERO: HeroContent = {
   headline: "Optimize. Convert. Scale.",
   subheadline:
-    "Helping eCommerce brands increase sales through Shopify Conversion Optimization and High-Performing AI Video Content.",
+    "I'm Ola Bright, a website conversion and growth specialist. I help brands turn the traffic they already have into sales — on Shopify, Wix, WooCommerce and WordPress.",
   image_url: null,
-  badges: ["Shopify Specialist", "Conversion Optimization Expert", "AI Video Creator"],
+  badges: ["Conversion Specialist", "Shopify Expert", "Website Audits", "Technical SEO"],
 };
 export const DEFAULT_STATS: StatsContent = {
   projects_completed: "120+",
@@ -42,7 +42,7 @@ export const DEFAULT_STATS: StatsContent = {
   revenue_generated: "$4.2M+",
 };
 export const DEFAULT_ABOUT: AboutContent = {
-  title: "Meet Ola Bright",
+  title: "About Ola Bright",
   image_url: null,
   story: "",
   journey: "",
@@ -51,7 +51,8 @@ export const DEFAULT_ABOUT: AboutContent = {
 };
 export const DEFAULT_CTA: CtaContent = {
   title: "Let's Grow Your Brand",
-  subtitle: "Tell me about your store and I'll show you where the revenue is hiding.",
+  subtitle:
+    "Send me your website link and I'll tell you the three biggest things costing you sales — free.",
 };
 
 /** Turns a storage path (or absolute URL) into a browser-usable media URL. */
@@ -85,7 +86,7 @@ export function pickContent<T>(map: SiteContentMap | undefined, key: string, fal
   return { ...fallback, ...(value as object) } as T;
 }
 
-export const shopifyProjectsQuery = (opts?: { featured?: boolean }) =>
+export const portfolioProjectsQuery = (opts?: { featured?: boolean }) =>
   queryOptions({
     queryKey: ["shopify_projects", opts?.featured ?? false],
     queryFn: async () => {
@@ -98,12 +99,12 @@ export const shopifyProjectsQuery = (opts?: { featured?: boolean }) =>
       if (opts?.featured) query = query.eq("featured", true);
       const { data, error } = await query;
       if (error) throw error;
-      return (data ?? []) as ShopifyProject[];
+      return (data ?? []) as PortfolioProject[];
     },
     staleTime: 60_000,
   });
 
-export const shopifyProjectQuery = (slug: string) =>
+export const portfolioProjectQuery = (slug: string) =>
   queryOptions({
     queryKey: ["shopify_project", slug],
     queryFn: async () => {
@@ -114,41 +115,7 @@ export const shopifyProjectQuery = (slug: string) =>
         .eq("published", true)
         .maybeSingle();
       if (error) throw error;
-      return (data ?? null) as ShopifyProject | null;
-    },
-    staleTime: 60_000,
-  });
-
-export const videoProjectsQuery = (opts?: { featured?: boolean }) =>
-  queryOptions({
-    queryKey: ["video_projects", opts?.featured ?? false],
-    queryFn: async () => {
-      let query = supabase
-        .from("video_projects")
-        .select("*")
-        .eq("published", true)
-        .order("sort_order", { ascending: true })
-        .order("created_at", { ascending: false });
-      if (opts?.featured) query = query.eq("featured", true);
-      const { data, error } = await query;
-      if (error) throw error;
-      return (data ?? []) as VideoProject[];
-    },
-    staleTime: 60_000,
-  });
-
-export const videoProjectQuery = (slug: string) =>
-  queryOptions({
-    queryKey: ["video_project", slug],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("video_projects")
-        .select("*")
-        .eq("slug", slug)
-        .eq("published", true)
-        .maybeSingle();
-      if (error) throw error;
-      return (data ?? null) as VideoProject | null;
+      return (data ?? null) as PortfolioProject | null;
     },
     staleTime: 60_000,
   });
@@ -173,4 +140,10 @@ export function slugify(value: string) {
     .trim()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
+}
+
+export function formatReviewDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
