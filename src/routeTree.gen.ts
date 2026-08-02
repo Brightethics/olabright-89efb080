@@ -17,10 +17,6 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as VideoPortfolioIndexRouteImport } from './routes/video-portfolio/index'
-import { Route as ShopifyPortfolioIndexRouteImport } from './routes/shopify-portfolio/index'
-import { Route as VideoPortfolioSlugRouteImport } from './routes/video-portfolio/$slug'
-import { Route as ShopifyPortfolioSlugRouteImport } from './routes/shopify-portfolio/$slug'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
@@ -63,26 +59,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VideoPortfolioIndexRoute = VideoPortfolioIndexRouteImport.update({
-  id: '/video-portfolio/',
-  path: '/video-portfolio/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopifyPortfolioIndexRoute = ShopifyPortfolioIndexRouteImport.update({
-  id: '/shopify-portfolio/',
-  path: '/shopify-portfolio/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VideoPortfolioSlugRoute = VideoPortfolioSlugRouteImport.update({
-  id: '/video-portfolio/$slug',
-  path: '/video-portfolio/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopifyPortfolioSlugRoute = ShopifyPortfolioSlugRouteImport.update({
-  id: '/shopify-portfolio/$slug',
-  path: '/shopify-portfolio/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -103,10 +79,6 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
-  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
-  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
-  '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
-  '/video-portfolio/': typeof VideoPortfolioIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
@@ -118,10 +90,6 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
-  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
-  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
-  '/shopify-portfolio': typeof ShopifyPortfolioIndexRoute
-  '/video-portfolio': typeof VideoPortfolioIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
@@ -135,10 +103,6 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
-  '/shopify-portfolio/$slug': typeof ShopifyPortfolioSlugRoute
-  '/video-portfolio/$slug': typeof VideoPortfolioSlugRoute
-  '/shopify-portfolio/': typeof ShopifyPortfolioIndexRoute
-  '/video-portfolio/': typeof VideoPortfolioIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
@@ -152,10 +116,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/admin'
-    | '/shopify-portfolio/$slug'
-    | '/video-portfolio/$slug'
-    | '/shopify-portfolio/'
-    | '/video-portfolio/'
     | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -167,10 +127,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/admin'
-    | '/shopify-portfolio/$slug'
-    | '/video-portfolio/$slug'
-    | '/shopify-portfolio'
-    | '/video-portfolio'
     | '/api/public/media/$'
   id:
     | '__root__'
@@ -183,10 +139,6 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/_authenticated/admin'
-    | '/shopify-portfolio/$slug'
-    | '/video-portfolio/$slug'
-    | '/shopify-portfolio/'
-    | '/video-portfolio/'
     | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
@@ -199,10 +151,6 @@ export interface RootRouteChildren {
   ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  ShopifyPortfolioSlugRoute: typeof ShopifyPortfolioSlugRoute
-  VideoPortfolioSlugRoute: typeof VideoPortfolioSlugRoute
-  ShopifyPortfolioIndexRoute: typeof ShopifyPortfolioIndexRoute
-  VideoPortfolioIndexRoute: typeof VideoPortfolioIndexRoute
   ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
@@ -264,34 +212,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/video-portfolio/': {
-      id: '/video-portfolio/'
-      path: '/video-portfolio'
-      fullPath: '/video-portfolio/'
-      preLoaderRoute: typeof VideoPortfolioIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shopify-portfolio/': {
-      id: '/shopify-portfolio/'
-      path: '/shopify-portfolio'
-      fullPath: '/shopify-portfolio/'
-      preLoaderRoute: typeof ShopifyPortfolioIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/video-portfolio/$slug': {
-      id: '/video-portfolio/$slug'
-      path: '/video-portfolio/$slug'
-      fullPath: '/video-portfolio/$slug'
-      preLoaderRoute: typeof VideoPortfolioSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shopify-portfolio/$slug': {
-      id: '/shopify-portfolio/$slug'
-      path: '/shopify-portfolio/$slug'
-      fullPath: '/shopify-portfolio/$slug'
-      preLoaderRoute: typeof ShopifyPortfolioSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -329,10 +249,6 @@ const rootRouteChildren: RootRouteChildren = {
   ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  ShopifyPortfolioSlugRoute: ShopifyPortfolioSlugRoute,
-  VideoPortfolioSlugRoute: VideoPortfolioSlugRoute,
-  ShopifyPortfolioIndexRoute: ShopifyPortfolioIndexRoute,
-  VideoPortfolioIndexRoute: VideoPortfolioIndexRoute,
   ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
