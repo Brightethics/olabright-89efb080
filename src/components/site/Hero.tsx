@@ -49,7 +49,7 @@ export function Hero() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="gold" size="lg">
-              <Link to="/shopify-portfolio">
+              <Link to="/portfolio">
                 View Portfolio <ArrowRight />
               </Link>
             </Button>
