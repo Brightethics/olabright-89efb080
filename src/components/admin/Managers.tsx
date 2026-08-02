@@ -243,7 +243,7 @@ export function PortfolioManager() {
           />
           <MediaListField
             label="Additional screenshots"
-            value={draft.gallery_images ?? []}
+            values={draft.gallery_images ?? []}
             onChange={(paths) => set({ gallery_images: paths })}
           />
 
