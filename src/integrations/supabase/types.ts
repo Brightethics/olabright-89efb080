@@ -53,7 +53,9 @@ export type Database = {
       shopify_projects: {
         Row: {
           after_image: string | null
+          audit_findings: string
           before_image: string | null
+          business_impact: string
           challenge: string
           created_at: string
           desktop_image: string | null
@@ -66,6 +68,7 @@ export type Database = {
           meta_title: string | null
           mobile_image: string | null
           name: string
+          platform: string
           published: boolean
           results: string
           screen_recording: string | null
@@ -77,7 +80,9 @@ export type Database = {
         }
         Insert: {
           after_image?: string | null
+          audit_findings?: string
           before_image?: string | null
+          business_impact?: string
           challenge?: string
           created_at?: string
           desktop_image?: string | null
@@ -90,6 +95,7 @@ export type Database = {
           meta_title?: string | null
           mobile_image?: string | null
           name: string
+          platform?: string
           published?: boolean
           results?: string
           screen_recording?: string | null
@@ -101,7 +107,9 @@ export type Database = {
         }
         Update: {
           after_image?: string | null
+          audit_findings?: string
           before_image?: string | null
+          business_impact?: string
           challenge?: string
           created_at?: string
           desktop_image?: string | null
@@ -114,6 +122,7 @@ export type Database = {
           meta_title?: string | null
           mobile_image?: string | null
           name?: string
+          platform?: string
           published?: boolean
           results?: string
           screen_recording?: string | null
@@ -146,7 +155,9 @@ export type Database = {
       testimonials: {
         Row: {
           approved: boolean
+          budget_range: string
           company: string
+          country: string
           created_at: string
           featured: boolean
           id: string
@@ -154,13 +165,17 @@ export type Database = {
           photo_url: string | null
           quote: string
           rating: number
+          review_date: string
           role: string
+          service_purchased: string
           sort_order: number
           updated_at: string
         }
         Insert: {
           approved?: boolean
+          budget_range?: string
           company?: string
+          country?: string
           created_at?: string
           featured?: boolean
           id?: string
@@ -168,13 +183,17 @@ export type Database = {
           photo_url?: string | null
           quote?: string
           rating?: number
+          review_date?: string
           role?: string
+          service_purchased?: string
           sort_order?: number
           updated_at?: string
         }
         Update: {
           approved?: boolean
+          budget_range?: string
           company?: string
+          country?: string
           created_at?: string
           featured?: boolean
           id?: string
@@ -182,7 +201,9 @@ export type Database = {
           photo_url?: string | null
           quote?: string
           rating?: number
+          review_date?: string
           role?: string
+          service_purchased?: string
           sort_order?: number
           updated_at?: string
         }
