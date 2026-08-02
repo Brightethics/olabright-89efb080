@@ -15,12 +15,10 @@ import {
   type HeroContent,
   type StatsContent,
 } from "@/lib/cms";
-import { VIDEO_CATEGORIES } from "@/lib/site-data";
 import {
   Field,
-  ShopifyManager,
+  PortfolioManager,
   TestimonialManager,
-  VideoManager,
 } from "@/components/admin/Managers";
 import { MediaField } from "@/components/admin/MediaField";
 import { Button } from "@/components/ui/button";
@@ -42,7 +40,7 @@ export const Route = createFileRoute("/_authenticated/admin")({
   component: AdminPage,
 });
 
-const TABS = ["Homepage", "Shopify", "Video", "Testimonials", "Enquiries"] as const;
+const TABS = ["Homepage", "Portfolio", "Reviews", "Enquiries"] as const;
 
 function ContentEditor() {
   const qc = useQueryClient();
@@ -274,9 +272,8 @@ function AdminPage() {
 
         <div className="mt-10">
           {tab === "Homepage" ? <ContentEditor /> : null}
-          {tab === "Shopify" ? <ShopifyManager /> : null}
-          {tab === "Video" ? <VideoManager categories={VIDEO_CATEGORIES} /> : null}
-          {tab === "Testimonials" ? <TestimonialManager /> : null}
+          {tab === "Portfolio" ? <PortfolioManager /> : null}
+          {tab === "Reviews" ? <TestimonialManager /> : null}
           {tab === "Enquiries" ? <Enquiries /> : null}
         </div>
       </div>
