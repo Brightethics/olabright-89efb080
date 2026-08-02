@@ -3,7 +3,7 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Hero, Authority } from "@/components/site/Hero";
-import { FeaturedShopify, FeaturedVideos } from "@/components/site/FeaturedWork";
+import { FeaturedProjects } from "@/components/site/FeaturedWork";
 import { Services } from "@/components/site/Services";
 import { Testimonials } from "@/components/site/Testimonials";
 import { WhyMe } from "@/components/site/WhyMe";
@@ -15,22 +15,20 @@ import {
   DEFAULT_CTA,
   pickContent,
   siteContentQuery,
-  shopifyProjectsQuery,
+  portfolioProjectsQuery,
   testimonialsQuery,
-  videoProjectsQuery,
   type CtaContent,
 } from "@/lib/cms";
 
-const TITLE = "Ola Bright Digital — Shopify CRO & AI Video Creator";
+const TITLE = "Ola Bright — Website Conversion & Growth Specialist";
 const DESCRIPTION =
-  "Shopify Conversion Optimization Specialist and AI Video Creator helping eCommerce brands increase sales, improve customer experience and scale profitably.";
+  "I help brands turn website visitors into customers through conversion optimization, audits, redesigns and technical SEO on Shopify, Wix, WooCommerce and WordPress.";
 
 export const Route = createFileRoute("/")({
   loader: async ({ context }) => {
     await Promise.all([
       context.queryClient.ensureQueryData(siteContentQuery),
-      context.queryClient.ensureQueryData(shopifyProjectsQuery()),
-      context.queryClient.ensureQueryData(videoProjectsQuery()),
+      context.queryClient.ensureQueryData(portfolioProjectsQuery()),
       context.queryClient.ensureQueryData(testimonialsQuery),
     ]);
   },
@@ -49,18 +47,20 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "ProfessionalService",
-          name: "Ola Bright Digital",
+          "@type": "Person",
+          name: "Ola Bright",
+          jobTitle: "Website Conversion & Growth Specialist",
           description: DESCRIPTION,
           email: CONTACT.email,
           telephone: "+2347042220359",
-          areaServed: "Worldwide",
           knowsAbout: [
-            "Shopify Conversion Optimization",
-            "Shopify Store Design",
-            "AI UGC Videos",
+            "Conversion Rate Optimization",
+            "Shopify",
+            "WooCommerce",
+            "Wix",
+            "WordPress",
+            "Technical SEO",
             "Klaviyo Email Marketing",
-            "TikTok Advertising",
           ],
         }),
       },
@@ -93,10 +93,6 @@ function FinalCta() {
 
   return (
     <section className="relative border-t border-border/60 py-20 sm:py-28">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 size-[34rem] -translate-x-1/2 rounded-full bg-gold/8 blur-[160px]"
-      />
       <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
         <h2 className="text-balance text-3xl font-semibold sm:text-5xl">
           {cta.title.replace(" Brand", " ")}
@@ -106,12 +102,12 @@ function FinalCta() {
         <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild variant="gold" size="lg">
             <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
-              <MessageCircle /> WhatsApp
+              <MessageCircle /> WhatsApp me
             </a>
           </Button>
           <Button asChild variant="goldOutline" size="lg">
             <Link to="/contact">
-              Contact Me <ArrowRight />
+              Contact me <ArrowRight />
             </Link>
           </Button>
         </div>
@@ -125,8 +121,7 @@ function Index() {
     <SiteLayout>
       <Hero />
       <Authority />
-      <FeaturedShopify />
-      <FeaturedVideos />
+      <FeaturedProjects />
       <Services />
       <WhyMe />
       <Process />
