@@ -7,134 +7,170 @@ export const CONTACT = {
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Shopify Portfolio", href: "/shopify-portfolio" },
-  { label: "Video Portfolio", href: "/video-portfolio" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Services", href: "/services" },
+  { label: "Reviews", href: "/reviews" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
+export const PLATFORMS = ["Shopify", "Wix", "WooCommerce", "WordPress", "Custom"] as const;
+
 export const SERVICE_GROUPS = [
   {
-    title: "Shopify Design & Build",
-    blurb: "Stores engineered to sell, not just to look good.",
+    title: "Website Design & Redesign",
+    blurb: "Clean, fast, conversion-ready websites on the platform you already use.",
     items: [
-      "Shopify Store Design",
-      "Shopify Store Redesign",
-      "Shopify Store Audits",
-      "Speed Optimization",
+      "Shopify store design & redesign",
+      "Wix website design",
+      "WooCommerce store builds",
+      "WordPress website redesign",
     ],
   },
   {
     title: "Conversion Optimization",
-    blurb: "Systematic testing that lifts revenue per visitor.",
+    blurb: "I fix the reasons visitors leave without buying or enquiring.",
     items: [
-      "Shopify Conversion Optimization",
-      "Landing Page Optimization",
-      "Product Page Optimization",
-      "Checkout Experience Improvements",
+      "Conversion rate optimization",
+      "Product & landing page optimization",
+      "Checkout and form friction removal",
+      "UX and navigation improvements",
+    ],
+  },
+  {
+    title: "Audits & Technical SEO",
+    blurb: "A clear, prioritised list of what is costing you money right now.",
+    items: [
+      "Full website audit",
+      "Speed & Core Web Vitals optimization",
+      "Technical SEO fixes",
+      "Analytics & tracking setup",
     ],
   },
   {
     title: "Growth & Retention",
-    blurb: "Traffic, funnels and email that compound.",
+    blurb: "Turning first-time visitors into repeat customers.",
     items: [
-      "Klaviyo Email Marketing",
-      "TikTok Advertising",
-      "Conversion Funnel Optimization",
-    ],
-  },
-  {
-    title: "AI Video Production",
-    blurb: "Scroll-stopping creative produced at volume.",
-    items: [
-      "AI UGC Videos",
-      "Product Commercial Videos",
-      "TikTok Video Ads",
-      "Social Media Video Content",
-      "AI Product Demonstrations",
+      "Klaviyo email marketing",
+      "Abandoned cart & lifecycle flows",
+      "Landing pages for paid traffic",
+      "Ongoing optimization retainers",
     ],
   },
 ];
 
 export const SERVICE_DETAILS = [
   {
-    slug: "shopify-conversion-optimization",
-    title: "Shopify Conversion Optimization",
+    slug: "conversion-rate-optimization",
+    title: "Conversion Rate Optimization",
     description:
-      "A structured programme of research, prioritisation and testing that increases the revenue you earn from the traffic you already pay for.",
+      "I study how real people use your website, find where they hesitate or drop off, and fix those moments one by one. The goal is simple: more sales and enquiries from the traffic you already have.",
     benefits: [
-      "Higher revenue per visitor without extra ad spend",
-      "Evidence-backed decisions instead of design opinions",
-      "Compounding gains as winning tests stack",
+      "More revenue without increasing ad spend",
+      "Decisions based on your data, not my design taste",
+      "Improvements that keep compounding month after month",
     ],
     process: [
-      "Analytics and heatmap research to locate revenue leaks",
-      "Hypothesis backlog ranked by impact versus effort",
-      "Build, launch and measure tests in focused sprints",
-      "Roll winners into the theme and repeat",
+      "Review analytics, heatmaps and session recordings",
+      "Build a prioritised list of fixes ranked by impact",
+      "Implement changes in focused sprints",
+      "Measure, keep the winners, repeat",
     ],
   },
   {
-    slug: "shopify-store-design",
-    title: "Shopify Store Design",
+    slug: "website-audit",
+    title: "Website Audit",
     description:
-      "A conversion-ready store built from the ground up, with merchandising, trust and speed designed in from day one.",
+      "A forensic review of your website across speed, UX, trust, mobile experience, SEO and checkout — delivered as a plain-English action plan you can hand to any developer, including me.",
+    benefits: [
+      "Know exactly where you are losing customers",
+      "A ranked roadmap instead of vague advice",
+      "Fast turnaround, usually within a week",
+    ],
+    process: [
+      "Access to your website and analytics",
+      "Manual and technical evaluation across 40+ checkpoints",
+      "Findings scored by revenue impact and effort",
+      "Written report plus a walkthrough call",
+    ],
+  },
+  {
+    slug: "website-design",
+    title: "Website Design",
+    description:
+      "A new website built around how your customers actually buy — not a template with your logo dropped in. Built on Shopify, Wix, WooCommerce or WordPress, whichever suits your business.",
     benefits: [
       "Launch with a foundation that already converts",
-      "Brand-led design that still respects buying behaviour",
-      "Sections your team can edit without a developer",
+      "Design that reflects your brand and builds trust",
+      "Pages you can edit yourself afterwards",
     ],
     process: [
-      "Brand and competitor discovery",
-      "Wireframes for the money pages",
-      "High-fidelity design and build",
-      "QA, speed pass and launch",
+      "Discovery: your customers, offer and competitors",
+      "Wireframes for the pages that make money",
+      "Design and build",
+      "Testing, speed pass and launch",
     ],
   },
   {
-    slug: "shopify-redesign",
-    title: "Shopify Redesign",
+    slug: "website-redesign",
+    title: "Website Redesign",
     description:
-      "A data-informed rebuild of an existing store that keeps what works, fixes what leaks and modernises the experience.",
+      "A data-informed rebuild of your existing website. I keep what already works, fix what leaks revenue, and modernise the rest without losing your search rankings.",
     benefits: [
-      "Preserve SEO and existing revenue while improving UX",
-      "Remove years of accumulated app and theme bloat",
-      "A cleaner, faster, higher-converting storefront",
+      "Protect your existing traffic and SEO",
+      "Remove years of accumulated bloat and broken pages",
+      "A faster, cleaner, higher-converting website",
     ],
     process: [
       "Audit current performance and behaviour data",
-      "Define the redesign scope around revenue impact",
-      "Phased build on a staging theme",
-      "Launch with rollback safety and post-launch monitoring",
+      "Scope the redesign around revenue impact",
+      "Phased build on a staging site",
+      "Launch with monitoring and a rollback plan",
     ],
   },
   {
-    slug: "store-audits",
-    title: "Shopify Store Audits",
+    slug: "speed-optimization",
+    title: "Speed Optimization",
     description:
-      "A forensic review of your store across speed, UX, merchandising, trust and checkout, delivered as a prioritised action plan.",
+      "Slow websites lose sales, especially on mobile. I cut load times by fixing images, scripts, themes and third-party apps that are quietly dragging your site down.",
     benefits: [
-      "Know exactly where you lose sales",
-      "A ranked roadmap you can action with any team",
-      "Fast turnaround — typically 5 to 7 days",
+      "Faster mobile experience where most of your traffic is",
+      "Better Core Web Vitals and search visibility",
+      "Lower bounce rates on paid traffic",
     ],
     process: [
-      "Access review of analytics and store",
-      "Heuristic and technical evaluation",
-      "Findings scored by revenue impact",
-      "Walkthrough call and written report",
+      "Benchmark current performance on real devices",
+      "Identify the heaviest scripts, images and apps",
+      "Implement fixes and remove dead weight",
+      "Re-test and document the before and after",
+    ],
+  },
+  {
+    slug: "technical-seo",
+    title: "Technical SEO",
+    description:
+      "The unglamorous work that helps search engines understand and rank your website: structure, indexing, schema, internal linking and page speed.",
+    benefits: [
+      "More organic traffic without paying per click",
+      "Clean site structure that scales as you grow",
+      "Fixes that support conversion work rather than fight it",
+    ],
+    process: [
+      "Crawl the site and find indexing and structure issues",
+      "Fix metadata, schema and internal linking",
+      "Resolve speed and mobile usability problems",
+      "Monitor rankings and report on movement",
     ],
   },
   {
     slug: "klaviyo-email-marketing",
     title: "Klaviyo Email Marketing",
     description:
-      "Lifecycle flows and campaigns that recover abandoned revenue and turn first-time buyers into repeat customers.",
+      "Automated email flows that recover abandoned revenue and bring customers back — set up once, earning quietly in the background.",
     benefits: [
-      "Recover checkout and browse abandonment automatically",
+      "Recover abandoned carts and browse sessions automatically",
       "Higher repeat purchase rate and customer lifetime value",
-      "Owned revenue that is not dependent on ad platforms",
+      "Revenue you own, independent of ad platforms",
     ],
     process: [
       "Audit list health, segmentation and deliverability",
@@ -144,155 +180,112 @@ export const SERVICE_DETAILS = [
     ],
   },
   {
-    slug: "tiktok-advertising",
-    title: "TikTok Advertising",
+    slug: "landing-page-optimization",
+    title: "Landing Page Optimization",
     description:
-      "Creative-led TikTok campaigns built around high-volume video testing rather than endless audience tinkering.",
+      "High-intent pages built for one job: turning paid or campaign traffic into customers, without the distractions of a full website.",
     benefits: [
-      "More creative angles tested per month",
-      "Lower cost per acquisition through creative wins",
-      "Clear reporting tied to store revenue",
+      "Lower cost per acquisition on paid campaigns",
+      "Clear, single-minded messaging that converts",
+      "Pages you can duplicate for new offers",
     ],
     process: [
-      "Offer and angle research",
-      "Creative production in batches",
-      "Structured campaign testing",
-      "Scale winners, retire fatigue",
-    ],
-  },
-  {
-    slug: "ai-ugc-videos",
-    title: "AI UGC Videos",
-    description:
-      "Authentic-feeling, creator-style video ads produced with AI so you can test far more angles for a fraction of the cost.",
-    benefits: [
-      "Weeks of creative output compressed into days",
-      "Consistent on-brand messaging across every hook",
-      "Affordable volume for real creative testing",
-    ],
-    process: [
-      "Hook and script writing based on customer language",
-      "AI creator and scene selection",
-      "Production, captions and edit",
-      "Performance review and iteration",
-    ],
-  },
-  {
-    slug: "product-commercial-videos",
-    title: "Product Commercial Videos",
-    description:
-      "Premium, cinematic product films for launches, hero product pages and paid social.",
-    benefits: [
-      "Elevate perceived brand value instantly",
-      "Assets that work on site, in ads and in email",
-      "Fast delivery without a physical shoot",
-    ],
-    process: [
-      "Concept and storyboard",
-      "AI scene generation and product integration",
-      "Sound design and colour grade",
-      "Delivery in every platform aspect ratio",
+      "Clarify the offer, audience and objection list",
+      "Write and structure the page around one action",
+      "Build, connect tracking and launch",
+      "Test headlines, proof and calls to action",
     ],
   },
 ];
 
 export const WHY_ME = [
   {
-    title: "Conversion-Focused",
-    body: "Every decision is measured against revenue per visitor — not opinion, not trends.",
+    title: "I optimise for revenue, not applause",
+    body: "Every change I make is measured against sales, enquiries and revenue per visitor — not how clever the design looks.",
   },
   {
-    title: "Shopify Expertise",
-    body: "Deep platform knowledge across themes, apps, speed, checkout and merchandising.",
+    title: "I work across platforms",
+    body: "Shopify, Wix, WooCommerce or WordPress. I meet your business where it already is instead of forcing a migration.",
   },
   {
-    title: "AI-Powered Creativity",
-    body: "High-volume, on-brand video creative produced in days instead of months.",
+    title: "You deal with me directly",
+    body: "No account managers, no handovers. The person you brief is the person doing the work.",
   },
   {
-    title: "Data-Driven Decisions",
-    body: "Event tracking, heatmaps and structured testing behind every recommendation.",
+    title: "I explain everything in plain English",
+    body: "You will always understand what I changed, why I changed it, and what it did to your numbers.",
   },
 ];
 
 export const PROCESS = [
   {
     step: "01",
-    title: "Store Analysis",
-    body: "A deep audit of analytics, user behaviour, speed and the full purchase journey to find where revenue leaks.",
+    title: "Website Analysis",
+    body: "I dig into your analytics, user behaviour, speed and the full journey from landing page to checkout to find where revenue leaks.",
   },
   {
     step: "02",
-    title: "Strategy Development",
-    body: "A prioritised roadmap ranked by revenue impact versus effort, with clear success metrics agreed upfront.",
+    title: "Strategy",
+    body: "You get a prioritised roadmap ranked by revenue impact versus effort, with the success metrics agreed before I touch anything.",
   },
   {
     step: "03",
     title: "Implementation",
-    body: "Design, development and creative production shipped in focused sprints with zero disruption to live sales.",
+    body: "Design and development shipped in focused sprints, on a staging environment, with no disruption to your live sales.",
   },
   {
     step: "04",
-    title: "Growth Optimization",
-    body: "Continuous testing, creative refreshes and reporting so results compound long after launch.",
+    title: "Measure & Improve",
+    body: "I track what changed, report honestly on it, and keep optimising so the results compound long after launch.",
   },
 ];
 
 export const FAQS = [
   {
-    q: "What exactly does a Shopify conversion optimization specialist do?",
-    a: "I find and fix the reasons visitors leave your store without buying. That covers speed, product page structure, trust signals, navigation, merchandising and checkout friction — all measured against revenue per visitor rather than surface-level design changes.",
+    q: "What exactly do you do?",
+    a: "I find and fix the reasons visitors leave your website without buying or enquiring. That covers speed, page structure, trust signals, navigation, mobile experience and checkout friction — all measured against sales rather than surface-level design changes.",
   },
   {
-    q: "How long does a typical project take?",
-    a: "A store audit takes 5–7 days. A conversion optimization sprint runs 3–6 weeks. A full redesign typically takes 4–8 weeks depending on catalogue size and how much custom functionality you need.",
+    q: "Which platforms do you work with?",
+    a: "Shopify, Wix, WooCommerce and WordPress, plus custom-built sites. Shopify is where I do most of my work, but the conversion principles apply everywhere.",
+  },
+  {
+    q: "How long does a project take?",
+    a: "A website audit takes about 5–7 days. A conversion optimization sprint runs 3–6 weeks. A full redesign is typically 4–8 weeks depending on how many pages and features are involved.",
   },
   {
     q: "What results can I realistically expect?",
-    a: "Most stores see a 20–70% lift in conversion rate within the first quarter. I set target metrics before starting and report against them, so you always know what the work is producing.",
+    a: "It depends on your starting point. Sites with clear, fixable problems often see a meaningful lift within the first quarter. I agree target metrics with you before starting and report against them honestly — including when something does not work.",
   },
   {
-    q: "Do you work with new stores or only established brands?",
-    a: "Both. New stores get a conversion-ready foundation from day one. Established brands get audits, redesigns and ongoing optimization built on their existing data.",
+    q: "Do you work with new websites or only established ones?",
+    a: "Both. New websites get a conversion-ready foundation from day one. Established businesses get audits, redesigns and ongoing optimization built on their existing data.",
   },
   {
-    q: "What are AI UGC videos and how are they different?",
-    a: "They're user-generated-style video ads produced with AI creators and product footage. You get the authentic feel of UGC with the speed and cost profile of AI, so you can test far more creative angles per month.",
-  },
-  {
-    q: "How much do you charge?",
-    a: "Audits start in the low hundreds, optimization sprints and redesigns are quoted per scope, and video packages are priced per volume. Book a free audit call and you'll get a fixed quote with no obligation.",
+    q: "How much does it cost?",
+    a: "Audits start around $150. Optimization sprints and redesigns are quoted per project scope. Message me on WhatsApp with your website link and I will give you a fixed quote with no obligation.",
   },
   {
     q: "How do we get started?",
-    a: "Book a free audit. I review your store, share the three biggest opportunities I find, and if it's a fit we scope the project from there.",
+    a: "Send me your website link on WhatsApp or through the contact form. I will review it and tell you the three biggest opportunities I can see, free. If it is a fit, we scope the project from there.",
   },
 ];
 
 export const PROJECT_TYPES = [
-  "Shopify Store Design",
-  "Shopify Store Redesign",
-  "Conversion Optimization",
-  "Store Audit",
+  "Website Audit",
+  "Conversion Rate Optimization",
+  "Website Design",
+  "Website Redesign",
   "Speed Optimization",
+  "Technical SEO",
+  "Landing Page Optimization",
   "Klaviyo Email Marketing",
-  "TikTok Advertising",
-  "AI UGC Videos",
-  "Product Commercial Videos",
   "Other",
 ];
 
 export const BUDGET_RANGES = [
-  "Under $500",
-  "$500 – $1,500",
-  "$1,500 – $5,000",
-  "$5,000 – $10,000",
-  "$10,000+",
-];
-
-export const VIDEO_CATEGORIES = [
-  "Product Commercials",
-  "AI UGC Videos",
-  "TikTok Ads",
-  "Product Demonstrations",
+  "$100 - $200",
+  "$200 - $500",
+  "$500 - $1000",
+  "$1000+",
 ];
