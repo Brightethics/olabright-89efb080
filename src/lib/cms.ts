@@ -16,7 +16,7 @@ export type StatsContent = {
   projects_completed: string;
   clients_served: string;
   years_experience: string;
-  revenue_generated: string;
+  revenue_influenced: string;
 };
 export type AboutContent = {
   title: string;
@@ -29,25 +29,34 @@ export type AboutContent = {
 export type CtaContent = { title: string; subtitle: string };
 
 export const DEFAULT_HERO: HeroContent = {
-  headline: "Optimize. Convert. Scale.",
+  headline: "Websites That Convert.",
   subheadline:
-    "I'm Ola Bright, a website conversion and growth specialist. I help brands turn the traffic they already have into sales — on Shopify, Wix, WooCommerce and WordPress.",
+    "I'm Ola Bright, a Website Conversion & Growth Specialist. I help businesses build, redesign, optimize and improve websites that generate more leads, more sales and better customer experiences — across Shopify, Wix, WooCommerce and WordPress.",
   image_url: null,
-  badges: ["Conversion Specialist", "Shopify Expert", "Website Audits", "Technical SEO"],
+  badges: [
+    "Conversion Rate Optimization",
+    "Website Audits",
+    "UX & Performance",
+    "Technical SEO",
+  ],
 };
 export const DEFAULT_STATS: StatsContent = {
-  projects_completed: "120+",
-  clients_served: "60+",
-  years_experience: "5+",
-  revenue_generated: "$4.2M+",
+  projects_completed: "50+",
+  clients_served: "30+",
+  years_experience: "4+",
+  revenue_influenced: "$500K+",
 };
 export const DEFAULT_ABOUT: AboutContent = {
   title: "About Ola Bright",
   image_url: null,
-  story: "",
-  journey: "",
-  why_hire: "",
-  expertise: "",
+  story:
+    "I did not start out as a conversion specialist. I started out building websites — and watching too many of them go live, look great, and sell almost nothing. That gap between a good-looking website and a website that actually performs is what I have spent the last four years closing.",
+  journey:
+    "I have audited and improved websites on Shopify, Wix, WooCommerce and WordPress for businesses in ecommerce, services, wellness and home goods. The work ranges from a focused conversion audit to a full data-informed redesign, but it always starts the same way: with the numbers and the behaviour, not with a design opinion.",
+  why_hire:
+    "My philosophy is simple — traffic is expensive, so the cheapest growth you can buy is fixing what happens after the click. I look for the moments where visitors hesitate: a slow product page, an unanswered objection, a confusing checkout, a mobile layout that fights the user. Then I rank those problems by lost revenue and fix them in order.",
+  expertise:
+    "You work with me directly, from the first audit to the final measurement. I explain every recommendation in plain English, agree the success metrics before I start, and report honestly on what moved and what did not. That is what a consultant should do — and it is why most of my work comes from repeat clients and referrals.",
 };
 export const DEFAULT_CTA: CtaContent = {
   title: "Let's Grow Your Brand",
