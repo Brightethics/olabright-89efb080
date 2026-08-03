@@ -98,7 +98,7 @@ export function Authority() {
     { label: "Projects Completed", value: stats.projects_completed },
     { label: "Clients Served", value: stats.clients_served },
     { label: "Years of Experience", value: stats.years_experience },
-    { label: "Revenue Generated", value: stats.revenue_generated },
+    { label: "Revenue Influenced", value: stats.revenue_influenced },
   ];
 
   return (
