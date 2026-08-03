@@ -388,6 +388,10 @@ export function TestimonialManager() {
             </Field>
           </div>
 
+          <Field label="Review title">
+            <Input value={draft.title ?? ""} onChange={(e) => set({ title: e.target.value })} />
+          </Field>
+
           <Field label="Review">
             <Textarea rows={4} value={draft.quote ?? ""} onChange={(e) => set({ quote: e.target.value })} />
           </Field>
