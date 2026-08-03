@@ -49,14 +49,14 @@ export function Hero() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="gold" size="lg">
-              <Link to="/portfolio">
-                View Portfolio <ArrowRight />
-              </Link>
+              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
+                <MessageCircle /> Get a free website review
+              </a>
             </Button>
             <Button asChild variant="goldOutline" size="lg">
-              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
-                <MessageCircle /> Message on WhatsApp
-              </a>
+              <Link to="/portfolio">
+                View my work <ArrowRight />
+              </Link>
             </Button>
           </div>
 
