@@ -309,6 +309,7 @@ const emptyTestimonial = (): Partial<Testimonial> => ({
   name: "",
   role: "",
   company: "",
+  title: "",
   country: "",
   service_purchased: PROJECT_TYPES[0],
   budget_range: BUDGET_RANGES[1],
