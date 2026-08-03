@@ -15,7 +15,7 @@ export function Services() {
           eyebrow="Expertise"
           title="Everything your store needs to"
           highlight="convert"
-          description="Sixteen focused services across Shopify performance, conversion optimization, growth marketing and AI video production."
+          description="Conversion optimization, audits, UX, performance and SEO work across Shopify, Wix, WooCommerce and WordPress. Design is one service among many — growth is the point."
         />
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">

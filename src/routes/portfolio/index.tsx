@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
 import { EmptyState, ProjectCard } from "@/components/site/FeaturedWork";
+import { WhatsappCta } from "@/components/site/WhatsappCta";
 import { portfolioProjectsQuery } from "@/lib/cms";
 import { cn } from "@/lib/utils";
 
@@ -86,6 +87,7 @@ function PortfolioPage() {
           )}
         </div>
       </section>
+      <WhatsappCta />
     </SiteLayout>
   );
 }

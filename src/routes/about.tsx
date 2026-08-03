@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
 import { CmsImage } from "@/components/site/Media";
 import { WhyMe } from "@/components/site/WhyMe";
+import { WhatsappCta } from "@/components/site/WhatsappCta";
 import { Button } from "@/components/ui/button";
 import {
   DEFAULT_ABOUT,
@@ -14,9 +15,9 @@ import {
   type AboutContent,
 } from "@/lib/cms";
 
-const TITLE = "About Ola Bright — Shopify CRO Specialist & AI Video Creator";
+const TITLE = "About Ola Bright — Website Conversion & Growth Specialist";
 const DESCRIPTION =
-  "The story, experience and expertise behind Ola Bright Digital — a Shopify conversion optimization specialist and AI video creator for eCommerce brands.";
+  "Why I specialise in website optimization, how I audit and improve websites, my philosophy and my process — written first-hand by Ola Bright.";
 
 export const Route = createFileRoute("/about")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteContentQuery),
@@ -96,6 +97,7 @@ function AboutPage() {
       </section>
 
       <WhyMe />
+      <WhatsappCta />
     </SiteLayout>
   );
 }

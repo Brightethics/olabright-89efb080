@@ -32,7 +32,7 @@ export function Hero() {
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold">
             <Sparkles className="size-3.5" />
-            Shopify CRO &amp; AI Video Studio
+            Website Conversion &amp; Growth Specialist
           </div>
 
           <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
@@ -49,14 +49,14 @@ export function Hero() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="gold" size="lg">
-              <Link to="/portfolio">
-                View Portfolio <ArrowRight />
-              </Link>
+              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
+                <MessageCircle /> Get a free website review
+              </a>
             </Button>
             <Button asChild variant="goldOutline" size="lg">
-              <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer">
-                <MessageCircle /> Message on WhatsApp
-              </a>
+              <Link to="/portfolio">
+                View my work <ArrowRight />
+              </Link>
             </Button>
           </div>
 
@@ -80,7 +80,7 @@ export function Hero() {
           <div className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-surface shadow-[var(--shadow-elevated)]">
             <CmsImage
               path={hero.image_url}
-              alt="Ola Bright — Shopify conversion optimization specialist and AI video creator"
+              alt="Ola Bright — website conversion and growth specialist"
               ratio="aspect-4/5"
             />
           </div>
@@ -98,7 +98,7 @@ export function Authority() {
     { label: "Projects Completed", value: stats.projects_completed },
     { label: "Clients Served", value: stats.clients_served },
     { label: "Years of Experience", value: stats.years_experience },
-    { label: "Revenue Generated", value: stats.revenue_generated },
+    { label: "Revenue Influenced", value: stats.revenue_influenced },
   ];
 
   return (

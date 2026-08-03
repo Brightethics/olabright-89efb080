@@ -14,8 +14,9 @@ export function Footer() {
               <span className="font-display text-lg font-semibold">Ola Bright Digital</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Shopify Conversion Optimization Specialist &amp; AI Video Creator. Helping ecommerce
-              brands turn traffic into profitable, repeatable revenue.
+              Website Conversion &amp; Growth Specialist. I help businesses build, redesign and
+              optimize websites that generate more leads, more sales and better customer
+              experiences.
             </p>
             <div className="mt-5 flex gap-3">
               <a

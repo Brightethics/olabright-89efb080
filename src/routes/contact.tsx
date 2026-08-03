@@ -4,7 +4,7 @@ import { Contact } from "@/components/site/Contact";
 
 const TITLE = "Contact — Ola Bright Digital";
 const DESCRIPTION =
-  "Message Ola Bright on WhatsApp, email or Fiverr, or send a project brief for Shopify conversion optimization and AI video work.";
+  "Message Ola Bright on WhatsApp, email or Fiverr, or send a project brief for a website audit, conversion optimization or redesign.";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({

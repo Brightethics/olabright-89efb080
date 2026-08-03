@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Ola Bright Digital" },
-      { name: "description", content: "Shopify conversion optimization and AI video creation." },
+      { name: "description", content: "Website conversion optimization, audits and growth consulting across Shopify, Wix, WooCommerce and WordPress." },
       { name: "author", content: "Ola Bright" },
       { property: "og:site_name", content: "Ola Bright Digital" },
       { property: "og:type", content: "website" },

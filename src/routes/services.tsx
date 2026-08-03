@@ -6,9 +6,9 @@ import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { CONTACT, SERVICE_DETAILS } from "@/lib/site-data";
 
-const TITLE = "Services — Shopify CRO, Growth & AI Video | Ola Bright Digital";
+const TITLE = "Services — Website Conversion, Audits & Growth | Ola Bright";
 const DESCRIPTION =
-  "Shopify conversion optimization, store design and redesign, audits, Klaviyo email, TikTok ads, AI UGC videos and product commercials.";
+  "Conversion rate optimization, website audits, UX and landing page optimization, product page optimization, technical SEO, performance, Klaviyo email, redesign and design.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -60,6 +60,18 @@ function ServicesPage() {
                         <li key={benefit} className="flex gap-3 text-sm text-muted-foreground">
                           <Check className="mt-0.5 size-4 shrink-0 text-gold" />
                           {benefit}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-gold/90">
+                      Deliverables
+                    </h3>
+                    <ul className="mt-3 grid gap-2">
+                      {service.deliverables.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm text-muted-foreground">
+                          <Check className="mt-0.5 size-4 shrink-0 text-gold" />
+                          {item}
                         </li>
                       ))}
                     </ul>

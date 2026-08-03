@@ -309,6 +309,7 @@ const emptyTestimonial = (): Partial<Testimonial> => ({
   name: "",
   role: "",
   company: "",
+  title: "",
   country: "",
   service_purchased: PROJECT_TYPES[0],
   budget_range: BUDGET_RANGES[1],
@@ -387,6 +388,10 @@ export function TestimonialManager() {
               </select>
             </Field>
           </div>
+
+          <Field label="Review title">
+            <Input value={draft.title ?? ""} onChange={(e) => set({ title: e.target.value })} />
+          </Field>
 
           <Field label="Review">
             <Textarea rows={4} value={draft.quote ?? ""} onChange={(e) => set({ quote: e.target.value })} />
