@@ -6,9 +6,9 @@ import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { CONTACT, SERVICE_DETAILS } from "@/lib/site-data";
 
-const TITLE = "Services — Shopify CRO, Growth & AI Video | Ola Bright Digital";
+const TITLE = "Services — Website Conversion, Audits & Growth | Ola Bright";
 const DESCRIPTION =
-  "Shopify conversion optimization, store design and redesign, audits, Klaviyo email, TikTok ads, AI UGC videos and product commercials.";
+  "Conversion rate optimization, website audits, UX and landing page optimization, product page optimization, technical SEO, performance, Klaviyo email, redesign and design.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({

@@ -80,7 +80,7 @@ export function Hero() {
           <div className="relative overflow-hidden rounded-[2rem] border border-gold/20 bg-surface shadow-[var(--shadow-elevated)]">
             <CmsImage
               path={hero.image_url}
-              alt="Ola Bright — Shopify conversion optimization specialist and AI video creator"
+              alt="Ola Bright — website conversion and growth specialist"
               ratio="aspect-4/5"
             />
           </div>
