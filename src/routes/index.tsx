@@ -4,6 +4,8 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Hero, Authority } from "@/components/site/Hero";
 import { FeaturedProjects } from "@/components/site/FeaturedWork";
+import { CaseStudyPreview } from "@/components/site/CaseStudyPreview";
+import { WhatsappCta } from "@/components/site/WhatsappCta";
 import { Services } from "@/components/site/Services";
 import { Testimonials } from "@/components/site/Testimonials";
 import { WhyMe } from "@/components/site/WhyMe";
