@@ -130,7 +130,10 @@ function ReviewsPage() {
                       </div>
                     </header>
 
-                    <p className="mt-5 text-pretty leading-relaxed text-muted-foreground">
+                    {review.title ? (
+                      <p className="mt-5 font-semibold">{review.title}</p>
+                    ) : null}
+                    <p className="mt-2 text-pretty leading-relaxed text-muted-foreground">
                       {review.quote}
                     </p>
 
