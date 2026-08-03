@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
 import { CmsImage } from "@/components/site/Media";
 import { WhyMe } from "@/components/site/WhyMe";
+import { WhatsappCta } from "@/components/site/WhatsappCta";
 import { Button } from "@/components/ui/button";
 import {
   DEFAULT_ABOUT,
@@ -96,6 +97,7 @@ function AboutPage() {
       </section>
 
       <WhyMe />
+      <WhatsappCta />
     </SiteLayout>
   );
 }
