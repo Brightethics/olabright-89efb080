@@ -63,6 +63,18 @@ function ServicesPage() {
                         </li>
                       ))}
                     </ul>
+
+                    <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.16em] text-gold/90">
+                      Deliverables
+                    </h3>
+                    <ul className="mt-3 grid gap-2">
+                      {service.deliverables.map((item) => (
+                        <li key={item} className="flex gap-3 text-sm text-muted-foreground">
+                          <Check className="mt-0.5 size-4 shrink-0 text-gold" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
                   <div className="rounded-2xl border border-gold/20 bg-background/50 p-6">
