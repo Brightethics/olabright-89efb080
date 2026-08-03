@@ -122,7 +122,18 @@ function Index() {
       <Hero />
       <Authority />
       <FeaturedProjects />
+      <WhatsappCta
+        title="See a project like yours?"
+        body="Send me your website link and I'll tell you what I'd fix first."
+        label="Get my take on WhatsApp"
+      />
+      <CaseStudyPreview />
       <Services />
+      <WhatsappCta
+        title="Not sure which service you need?"
+        body="Tell me your goal in one message and I'll point you to the fastest path — even if it isn't a paid project."
+        label="Ask me on WhatsApp"
+      />
       <WhyMe />
       <Process />
       <Testimonials />
