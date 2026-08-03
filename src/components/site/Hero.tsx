@@ -32,7 +32,7 @@ export function Hero() {
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/25 bg-surface/60 px-4 py-1.5 text-xs font-medium tracking-wide text-gold">
             <Sparkles className="size-3.5" />
-            Shopify CRO &amp; AI Video Studio
+            Website Conversion &amp; Growth Specialist
           </div>
 
           <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
