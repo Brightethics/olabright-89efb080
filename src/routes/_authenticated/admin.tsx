@@ -123,10 +123,10 @@ function ContentEditor() {
               onChange={(e) => setStats({ ...stats, years_experience: e.target.value })}
             />
           </Field>
-          <Field label="Revenue generated">
+          <Field label="Revenue influenced">
             <Input
-              value={stats.revenue_generated}
-              onChange={(e) => setStats({ ...stats, revenue_generated: e.target.value })}
+              value={stats.revenue_influenced}
+              onChange={(e) => setStats({ ...stats, revenue_influenced: e.target.value })}
             />
           </Field>
         </div>
