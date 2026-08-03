@@ -48,13 +48,13 @@ export function ProjectCard({
 export function FeaturedProjects() {
   const { data: all } = useSuspenseQuery(portfolioProjectsQuery());
   const featured = all.filter((p) => p.featured);
-  const projects = (featured.length ? featured : all).slice(0, 6);
+  const projects = (featured.length >= 4 ? featured : all).slice(0, 6);
 
   return (
     <section className="relative border-t border-border/60 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Selected Work"
+          eyebrow="Featured Work"
           title="Websites I've"
           highlight="improved"
           description="Real projects across Shopify, Wix, WooCommerce and WordPress — with the problem, what I did and what changed."
