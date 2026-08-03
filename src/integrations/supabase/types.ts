@@ -169,6 +169,7 @@ export type Database = {
           role: string
           service_purchased: string
           sort_order: number
+          title: string
           updated_at: string
         }
         Insert: {
@@ -187,6 +188,7 @@ export type Database = {
           role?: string
           service_purchased?: string
           sort_order?: number
+          title?: string
           updated_at?: string
         }
         Update: {
@@ -205,6 +207,7 @@ export type Database = {
           role?: string
           service_purchased?: string
           sort_order?: number
+          title?: string
           updated_at?: string
         }
         Relationships: []
