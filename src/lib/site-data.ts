@@ -1,7 +1,7 @@
 export const CONTACT = {
   whatsapp: "https://wa.me/2347042220359",
   whatsappDisplay: "+234 704 222 0359",
-  email: "mrbrightugc@gmail.com",
+  email: "mr.olamhe@gmail.com",
   fiverr: "https://fiverr.com/mrolabright",
 };
 
