@@ -68,6 +68,7 @@ export const DEFAULT_CTA: CtaContent = {
 export function mediaUrl(path?: string | null): string | null {
   if (!path) return null;
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  if (path.startsWith("/")) return path;
   return `/api/public/media/${path.replace(/^\/+/, "")}`;
 }
 
