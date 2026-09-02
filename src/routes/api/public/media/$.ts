@@ -1,5 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+/**
+ * Streams media from the private "media" storage bucket.
+ * Uses the publishable key (public SELECT policy on the bucket), so it works on
+ * any host — Lovable, Vercel or a custom domain — without a service-role key.
+ */
 export const Route = createFileRoute("/api/public/media/$")({
   server: {
     handlers: {
@@ -9,20 +14,34 @@ export const Route = createFileRoute("/api/public/media/$")({
           return new Response("Not found", { status: 404 });
         }
 
-        const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-        const { data, error } = await supabaseAdmin.storage
-          .from("media")
-          .createSignedUrl(path, 60 * 60 * 24);
+        const supabaseUrl =
+          process.env["SUPABASE_URL"] ??
+          process.env["VITE_SUPABASE_URL"] ??
+          import.meta.env.VITE_SUPABASE_URL;
+        const apiKey =
+          process.env["SUPABASE_PUBLISHABLE_KEY"] ??
+          process.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ??
+          import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-        if (error || !data?.signedUrl) {
+        if (!supabaseUrl || !apiKey) {
+          return new Response("Media backend not configured", { status: 500 });
+        }
+
+        const objectUrl = `${supabaseUrl}/storage/v1/object/media/${path
+          .split("/")
+          .map(encodeURIComponent)
+          .join("/")}`;
+
+        const upstream = await fetch(objectUrl, { headers: { apikey: apiKey } });
+        if (!upstream.ok || !upstream.body) {
           return new Response("Not found", { status: 404 });
         }
 
-        return new Response(null, {
-          status: 302,
+        return new Response(upstream.body, {
+          status: 200,
           headers: {
-            location: data.signedUrl,
-            "cache-control": "public, max-age=3600",
+            "content-type": upstream.headers.get("content-type") ?? "application/octet-stream",
+            "cache-control": "public, max-age=31536000, immutable",
           },
         });
       },
