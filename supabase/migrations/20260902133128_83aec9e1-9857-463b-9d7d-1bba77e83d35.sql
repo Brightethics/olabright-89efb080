@@ -1,0 +1,3 @@
+UPDATE public.shopify_projects SET desktop_image='portfolio/dopple-press-desktop.png', hero_image='portfolio/dopple-press-desktop.png', mobile_image='portfolio/dopple-press-mobile.png' WHERE slug='dopple-press';
+UPDATE public.shopify_projects SET desktop_image='portfolio/package-free-shop-desktop.png', hero_image='portfolio/package-free-shop-desktop.png', mobile_image='portfolio/package-free-shop-mobile.png' WHERE slug='package-free-shop';
+UPDATE public.shopify_projects SET desktop_image='portfolio/izzy-wheels-desktop.png', hero_image='portfolio/izzy-wheels-desktop.png', mobile_image='portfolio/izzy-wheels-mobile.png' WHERE slug='izzy-wheels';
